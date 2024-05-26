@@ -1,0 +1,56 @@
+
+
+.card {
+  width: 400px; 
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  margin: 1rem;
+}
+
+.card_inner {
+  padding: 1rem;
+}
+
+.room_img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 1px solid #ddd;
+}
+
+.room_desc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.room_desc > div {
+  flex: 1 1 calc(50% - 1rem); 
+  box-sizing: border-box;
+}
+
+.room_desc span {
+  font-weight: bold;
+}
+
+.room_add {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: #555;
+}
+
+.room_add span {
+  margin-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.room_add span::before {
+  content: '📍'; 
+  margin-right: 0.5rem;
+}

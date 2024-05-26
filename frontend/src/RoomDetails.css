@@ -1,0 +1,67 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.multi-image-form {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-logo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group.flex-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-item {
+  width: 48%; /* Adjust as needed */
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type='number'],
+input[type='text'],
+input[type='file'] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button[type='submit'] {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type='submit']:hover {
+  background-color: #0056b3;
+}
