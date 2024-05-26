@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Login.css';
 import logo from './assets/images/1234.jpg'; // Import your logo image
+import { AuthContext } from './Context/AuthContext'; // Import AuthContext
 
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
+  const navigate = useNavigate(); // Initialize useNavigate
+  const { login } = useContext(AuthContext); // Use AuthContext
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,10 +20,27 @@ function Login() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Handle form submission logic here
+    try {
+      const response = await fetch('http://localhost:4040/user/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json' // Set content type to JSON
+        },
+        body: JSON.stringify(formData) // Convert formData to JSON
+      });
+
+      if (response.ok) {
+        console.log("Login successful");
+        login(); // Update login state
+        navigate('/'); // Redirect to home page
+      } else {
+        console.error('Failed to login');
+      }
+    } catch (error) {
+      console.error("An error occurred during login", error);
+    }
 
     // Reset the form fields
     setFormData({

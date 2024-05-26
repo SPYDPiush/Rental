@@ -1,8 +1,10 @@
 
 import './App.css'; // Import your CSS file for styling
-import RoomDesc from './RoomDesc';
-import img from './assets/images/1234.jpg'
-import img2 from './assets/images/7og3nR.jpg'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './Home';
+import Login from './Login';
+import { AuthProvider } from './Context/AuthContext'; 
+
 
 function App() {
 
@@ -13,9 +15,19 @@ function App() {
   //   kitchen : 3,
   //   balcony : 5
   // }
- return(
   // <RoomDesc photos = {image} details={details}/>
-  <Container />
+ return(
+  <AuthProvider>
+
+
+  <Router>
+  
+  <Routes>
+    <Route path='/' element={<Home />} />
+    <Route path='/login' element={<Login />} />
+  </Routes>
+  </Router>
+  </AuthProvider>
  )
 }
 

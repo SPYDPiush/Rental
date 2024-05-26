@@ -19,12 +19,34 @@ function SignIn() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-
-    // Handle form submission logic here
-
+  
+    try {
+      const formDataToSend = new FormData();
+      formDataToSend.append('fullName', formData.fullName);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('password', formData.password);
+      formDataToSend.append('userName', formData.username);
+      formDataToSend.append('avatar', formData.avatar);
+  
+      const response = await fetch('http://localhost:4040/user/register', {
+        method: 'POST',
+        body: formDataToSend
+      });
+  
+      if (response.ok) {
+        console.log('Form data sent successfully!');
+        // Handle any further logic after successful form submission
+      } else {
+        console.error('Failed to send form data:', response.statusText);
+        // Handle error cases here
+      }
+    } catch (error) {
+      console.error('An error occurred while sending form data:', error);
+      // Handle error cases here
+    }
+  
     // Reset the form fields
     setFormData({
       fullName: '',
@@ -36,6 +58,7 @@ function SignIn() {
     // Manually reset the file input value
     e.target.reset();
   };
+  
 
   return (
     <div className='form-container'>

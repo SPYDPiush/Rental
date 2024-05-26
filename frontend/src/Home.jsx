@@ -3,7 +3,7 @@ import { FaAngleLeft, FaAngleRight } from 'react-icons/fa'; // Import icons
 import Navbar from "./Navbar";
 import Card from "./Card"; // Import your CSS file for styling
 
-function Container() {
+function Home() {
   let arr = [1,2,3,4,5,6,6,7,8,9,1,2,3,4,5,6];
   const [page, setPage] = useState(1);
   const itemsPerPage = 6;
@@ -35,4 +35,4 @@ function Container() {
   );
 }
 
-export default Container;
+export default Home;
