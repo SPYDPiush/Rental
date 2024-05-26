@@ -5,9 +5,9 @@ import { Post } from "../Models/post.models.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 const postCreate = asyncHandler(async (req, res) => {
-  const { bedroom, bathroom, kitchen, balcony } = req.body;
+  const { bedroom, bathroom, kitchen, balcony,address } = req.body;
 
-  if ([bedroom, bathroom, kitchen, balcony].some((field) => field?.trim() === "")) {
+  if ([bedroom, bathroom, kitchen, balcony,address].some((field) => field?.trim() === "")) {
     throw new apiError(400, "All fields are required");
   }
 
@@ -29,7 +29,8 @@ const postCreate = asyncHandler(async (req, res) => {
       bedroom,
       bathroom,
       balcony,
-      kitchen
+      kitchen,
+      address
     });
 
     return res.status(200).json(

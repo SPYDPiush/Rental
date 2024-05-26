@@ -21,10 +21,10 @@ const userRegister = asyncHandler( async (req,res) => {
   // check for user creation
   // return response
 
-  const {userName,fullName,avatar,email,password} = req.body
+  const {userName,fullName,avatar,email,password,mobile} = req.body
 
   if(
-    [userName,fullName,avatar,email,password].some( (field) => field?.trim() == "")  )
+    [userName,fullName,avatar,email,password,mobile].some( (field) => field?.trim() == "")  )
     {
       throw new apiError(400,"All fields are required")
     }
@@ -54,7 +54,8 @@ const userRegister = asyncHandler( async (req,res) => {
     avatar:avatatURL,
     email,
     userName,
-    password
+    password,
+    mobile
   })
 
 

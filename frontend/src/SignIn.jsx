@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './SignIn.css';
+import { useNavigate,Link } from 'react-router-dom';
 import logo from './assets/images/1234.jpg'; // Import your logo image
 
 function SignIn() {
@@ -10,6 +11,8 @@ function SignIn() {
     username: '',
     avatar: null
   });
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -28,6 +31,7 @@ function SignIn() {
       formDataToSend.append('email', formData.email);
       formDataToSend.append('password', formData.password);
       formDataToSend.append('userName', formData.username);
+      formDataToSend.append('mobile', formData.mobile);
       formDataToSend.append('avatar', formData.avatar);
   
       const response = await fetch('http://localhost:4040/user/register', {
@@ -36,6 +40,7 @@ function SignIn() {
       });
   
       if (response.ok) {
+        navigate('/login')
         console.log('Form data sent successfully!');
         // Handle any further logic after successful form submission
       } else {
@@ -106,6 +111,15 @@ function SignIn() {
             id='username' 
             name='username' 
             value={formData.username} 
+            onChange={handleChange} 
+            required 
+          />
+          <label htmlFor='mobile'>Mobile Number</label>
+          <input 
+            type='text' 
+            id='mobile' 
+            name='mobile' 
+            value={formData.mobile} 
             onChange={handleChange} 
             required 
           />

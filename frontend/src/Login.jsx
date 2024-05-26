@@ -1,16 +1,18 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate, Link } from 'react-router-dom'; 
 import './Login.css';
-import logo from './assets/images/1234.jpg'; // Import your logo image
-import { AuthContext } from './Context/AuthContext'; // Import AuthContext
+import logo from './assets/images/1234.jpg'; 
+import ErrorComponent from './ErrorComponent'; // Import your ErrorComponent
+import { AuthContext } from './Context/AuthContext'; 
 
 function Login() {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
-  const navigate = useNavigate(); // Initialize useNavigate
-  const { login } = useContext(AuthContext); // Use AuthContext
+  const [error, setError] = useState(null); // State to manage error message
+  const navigate = useNavigate(); 
+  const { login, setInfo } = useContext(AuthContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,23 +28,28 @@ function Login() {
       const response = await fetch('http://localhost:4040/user/login', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json' // Set content type to JSON
+          'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(formData) // Convert formData to JSON
+        body: JSON.stringify(formData) 
       });
 
       if (response.ok) {
         console.log("Login successful");
-        login(); // Update login state
-        navigate('/'); // Redirect to home page
+
+        const data = await response.json()
+
+        setInfo(data.data.data)
+        login(); 
+        navigate('/'); 
       } else {
         console.error('Failed to login');
+        setError('Failed to login. Please check your credentials and try again.'); // Set error message
       }
     } catch (error) {
       console.error("An error occurred during login", error);
+      setError('An error occurred during login. Please try again later.'); // Set error message
     }
 
-    // Reset the form fields
     setFormData({
       email: '',
       password: ''
@@ -55,6 +62,7 @@ function Login() {
         <div className='form-logo'>
           <img src={logo} alt='logo' />
         </div>
+        {error && <ErrorComponent error={error} />} {/* Render ErrorComponent if error exists */}
         <div className='form-group'>
           <label htmlFor='email'>Email</label>
           <input 
@@ -79,6 +87,11 @@ function Login() {
         </div>
         <button type='submit'>Login</button>
       </form>
+      <div className='signin-text'>
+        <Link to="/sign_in">
+          Sign In
+        </Link>
+      </div>
     </div>
   );
 }

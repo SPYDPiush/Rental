@@ -1,3 +1,10 @@
+a {
+  text-decoration: none;
+}
+
+
+
+
 .Navbar {
   margin: 0;
   position: fixed;
@@ -24,16 +31,10 @@ nav {
   height: 120px;
 }
 
-.nav_center input {
-  width: 300px;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
 .nav_right .rightElement {
   display: flex;
   align-items: center;
+  font-size: 1.4rem;
 }
 
 .nav_right .rightElement > div {
@@ -44,6 +45,7 @@ nav {
 .user_profile {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .profile img {
@@ -62,4 +64,87 @@ nav {
 
 .login:hover {
   background-color: #e9ecef;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.Profile_details {
+  position: absolute;
+  top: 60px;
+  right: 20px;
+}
+
+.profile_card {
+  width: 250px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.profile_userName {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile_data {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile_data > div {
+  margin-bottom: 10px;
+}
+
+.email,
+.Full_Name,
+.mobileno {
+  font-size: 16px;
+}
+
+.addpost {
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.addpost:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}
+
+
+.logout {
+  font-size: 16px;
+  background-color: #dc3545; /* Red color for logout */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+  background-color: #c82333; /* Darker red color on hover */
 }

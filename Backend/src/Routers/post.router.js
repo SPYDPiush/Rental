@@ -16,6 +16,6 @@ postRouter.route('/addPost').post(
 );
 
 
-postRouter.route('/allpost').post(getAllPost)
+postRouter.route('/allpost').get(getAllPost)
 
 export { postRouter };

@@ -54,3 +54,24 @@
   content: '📍'; 
   margin-right: 0.5rem;
 }
+
+
+.heart_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.heart {
+  font-size: 24px;
+}
+
+.liked {
+  color: red;
+}
+
+.heart_count {
+  margin-left: 5px;
+}

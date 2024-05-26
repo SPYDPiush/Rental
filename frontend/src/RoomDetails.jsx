@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './RoomDetails.css';
 import logo from './assets/images/1234.jpg'; 
 
 function RoomDetails() {
+
+  const navigate =  useNavigate()
   const [formData, setFormData] = useState({
     images: [],
     bedroom: '',
@@ -13,13 +16,15 @@ function RoomDetails() {
   });
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, files } = e.target;
     if (files) {
+      const imageFiles = Array.from(files); 
       setFormData({
         ...formData,
-        [name]: [...formData.images, ...files]
+        [name]: imageFiles 
       });
     } else {
+      const { value } = e.target;
       setFormData({
         ...formData,
         [name]: value
@@ -27,11 +32,39 @@ function RoomDetails() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
 
-    
+    try {
+      const formDataToSend = new FormData();
+      formData.images.forEach((image) => {
+        formDataToSend.append('images', image); 
+      });
+      formDataToSend.append('bedroom', formData.bedroom);
+      formDataToSend.append('bathroom', formData.bathroom);
+      formDataToSend.append('balcony', formData.balcony);
+      formDataToSend.append('kitchen', formData.kitchen);
+      formDataToSend.append('address', formData.address);
+
+      const response = await fetch('http://localhost:4040/post/addPost', { 
+        method: 'POST',
+        body: formDataToSend
+      });
+
+      if (response.ok) {
+        navigate('/')
+        console.log('Form data sent successfully!');
+
+        
+      } else {
+        console.error('Failed to send form data:', response.statusText);
+        
+      }
+    } catch (error) {
+      console.error('An error occurred while sending form data:', error);
+      
+    }
+
     setFormData({
       images: [],
       bedroom: '',
@@ -40,6 +73,7 @@ function RoomDetails() {
       kitchen: '',
       address: ''
     });
+    e.target.reset();
   };
 
   return (
@@ -49,7 +83,7 @@ function RoomDetails() {
           <img src={logo} alt='logo' />
         </div>
         <div className='form-group'>
-          <label htmlFor='images'>Images<span>(select multiple image)</span></label>
+          <label htmlFor='images'>Images<span>(select multiple images)</span></label>
           <input 
             type='file' 
             id='images' 

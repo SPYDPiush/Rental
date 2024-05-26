@@ -23,7 +23,12 @@ const postSchema = new Schema({
   kitchen:{
     type:Number,
     require:true
+  },
+  address:{
+    type : String,
+    required : true
   }
+
 
 })
 

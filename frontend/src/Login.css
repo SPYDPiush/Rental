@@ -64,3 +64,13 @@ button[type='submit'] {
 button[type='submit']:hover {
   background-color: #0056b3;
 }
+
+.signin-text {
+  /* text-align: center; */
+  position: relative;
+  bottom: -205px;
+  right: 220px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
